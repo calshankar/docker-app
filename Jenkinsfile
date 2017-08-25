@@ -14,23 +14,16 @@ node {
         app = docker.build("shankar-app")
     }
 
+    stage('Run image') {
+        /* Ideally, we would run a test framework against our image.
+         * For this example, we're using a Volkswagen-type approach ;-) */
+
+        sh 'docker run -d -p 8082:80 --name=shankar_is_dumb_sometimes shankar-app'
+    }
+
     stage('Test image') {
         /* Ideally, we would run a test framework against our image.
          * For this example, we're using a Volkswagen-type approach ;-) */
 
-        app.inside {
-            sh 'curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:8080'
-        }
+        sh 'curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1:8080'
     }
-
-    stage('Push image') {
-        /* Finally, we'll push the image with two tags:
-         * First, the incremental build number from Jenkins
-         * Second, the 'latest' tag.
-         * Pushing multiple tags is cheap, as all the layers are reused. */
-        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
-            app.push("${env.BUILD_NUMBER}")
-            app.push("latest")
-        }
-    }
-}
