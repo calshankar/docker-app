@@ -13,14 +13,14 @@ node {
       
         sh 'docker ps -aq | xargs docker stop'
         sh 'docker ps -aq | xargs docker rm -v'
-        sh 'docker rmi shankar-app'        
+        sh 'docker rmi demo-app'        
     }
 
     stage('Build image') {
         /* This builds the actual image;
          * docker build on the command line */
 
-        app = docker.build("shankar-app")
+        app = docker.build("demo-app")
     }
 
     stage('Run image') {
