@@ -13,7 +13,7 @@ node {
       
         sh 'docker ps -aq | xargs docker stop'
         sh 'docker ps -aq | xargs docker rm -v'
-        sh 'docker rmi demo-app'        
+        sh 'docker rmi demo-app'  
     }
 
     stage('Build image') {
