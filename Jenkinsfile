@@ -26,7 +26,7 @@ node {
     stage('Run image') {
         /* Running the Image, similar to 'run' command from Shell */
 
-        sh 'docker run -d -p 8082:80 --name=learntek_demo shankar-app'
+        sh 'docker run -d -p 8082:80 --name=learntek_demo demo-app'
     }
 
     stage('Test image') {
