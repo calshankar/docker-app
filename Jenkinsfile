@@ -11,9 +11,9 @@ node {
         /* The commands builds the actual image; similar to
          * docker build on the command line */
       
-        sh 'docker ps -aq | xargs docker stop'
-        sh 'docker ps -aq | xargs docker rm -v'
-        sh 'docker rmi demo-app'
+        sh 'docker ps -aq | xargs docker stop || true'
+        sh 'docker ps -aq | xargs docker rm -v || true'
+        sh 'docker rmi demo-app || true'
     }
 
     stage('Build image') {
