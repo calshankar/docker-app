@@ -14,6 +14,7 @@ node {
         sh 'docker ps -aq | xargs docker stop || true'
         sh 'docker ps -aq | xargs docker rm -v || true'
         sh 'docker rmi demo-app || true'
+        sh 'docker rmi calshankar/demo-app || true'
     }
 
     stage('Build image') {
