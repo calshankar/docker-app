@@ -20,7 +20,7 @@ node {
         /* This builds the actual image;
          * docker build on the command line */
 
-        app = docker.build("demo-app")
+        app = docker.build("calshankar/demo-app")
     }
 
     stage('Run image') {
@@ -38,7 +38,7 @@ node {
     stage('Push image') {
         /* Finally, push the image with tags to docker registry */
 
-        docker.withRegistry('calshankar', 'docker-hub-credentials') {
+        docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
             app.push("${env.BUILD_NUMBER}")
             app.push("latest")
         }
