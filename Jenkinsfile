@@ -13,7 +13,7 @@ node {
       
         sh 'docker ps -aq | xargs docker stop || true'
         sh 'docker ps -aq | xargs docker rm -v || true'
-        sh 'docker rmi demo-app || true'
+        sh 'docker rmi $(docker image ls | grep -i registry | cut -c67-78) || true'
         sh 'docker rmi calshankar/demo-app || true'
     }
 
