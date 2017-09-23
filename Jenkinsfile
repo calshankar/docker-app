@@ -37,7 +37,8 @@ node {
     }
   
     stage('Push image') {
-        /* Finally, push the image with Jenkins build no. & latest tags to docker registry */
+        /* Finally, push the image with Jenkins build no. & latest tags to 
+docker..No trciksy registry */
 
         docker.withRegistry('https://registry.hub.docker.com', 'docker-hub-credentials') {
             app.push("${env.BUILD_NUMBER}")
