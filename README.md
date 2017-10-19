@@ -4,7 +4,7 @@
 + For the pipeline definition, choose Pipeline script from SCM, and select git as the SCM option
 + Enter the repository url as "https://github.com/calshankar/docker-app" to let Jenkins know how to find your repository.
 + Specify the branch as "*/master" and add the name for jenkins file as "Jenkinsfile". This file is present in root path of the repo
-+ This step is not mandatory -> You can choose to setup 'Poll SCM' by entering the value "H/5* * * *" for polling every 5 mins. The preferred option is to setup Webhook for jenkins job on the git repository configuration
++ This step is not mandatory -> You can choose to setup 'Poll SCM' by entering the value "H/2* * * *" for polling every 2 mins. The preferred option is to setup Webhook for jenkins job on the git repository configuration
 + Click on save to complete the job setup
 + If you do have not setup 'Poll SCM' or webhook, you need to manually trigger the job by clicking the play button or Build now option & watch the console ouput for the job trigerred on the screen for any runtime issues
 
