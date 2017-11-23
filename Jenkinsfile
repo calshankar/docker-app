@@ -8,8 +8,7 @@ node {
     }
 
     stage('Clean up') {
-        /* The commands builds the actual image; similar to
-         * docker build on the command line */
+        /* The commands cleans up any previous container or image before deploying */
       
         sh 'docker ps -aq | xargs docker stop || true'
         sh 'docker ps -aq | xargs docker rm -v || true'
@@ -27,7 +26,7 @@ node {
     stage('Run image') {
         /* Running the Image, similar to 'run' command from Shell */
 
-        sh 'docker run -d -p 8082:80 --name=learntek_demo calshankar/demo-app'
+        sh 'docker run -d -p 8082:80 --name=apache_demo calshankar/demo-app'
     }
 
     stage('Test image') {
