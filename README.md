@@ -13,6 +13,19 @@ Note:
 
 + The job configuration assumes, docker is installed & deamon is already started/running
 
+### Health Check option
+Additional Health check option is added. To test from command line execute the following command in the order. Note the additional capability is required to bring down the network interface on the container
++ docker container run -d --name healthcheck_test --cap-add NET_ADMIN -p 8080:80 <image name with tags>
+
+Let's introduce the problem which fails the health check
++ docker exec -it healthcheck_test /bin/bash -c "sleep 10; ip link set lo down; sleep 15; ip link set lo up"
+
+Watch from one window to see the status of healthcheck toggling
++ watch -n 1 "docker container ls"
+
+You can also watch historical record of docker State change events for last 10 mins
++ docker system events --since 10m --filter event=health
+
 ### How to install Jenkins
 The instruction assumes that you will run the instruction on Ubuntu OS which can be installed via virtual box on windows or you can spin up any ubuntu machine on datacenter or free-tier cloud
 https://www.digitalocean.com/community/tutorials/how-to-install-jenkins-on-ubuntu-16-04

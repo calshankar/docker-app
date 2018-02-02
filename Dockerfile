@@ -1,18 +1,20 @@
 # Setting up Container Web app
 FROM phusion/baseimage
 MAINTAINER calshankar@icloud.com
-
-CMD ["/sbin/my_init", "/bin/bash"]
+LABEL application=webApp
 
 RUN apt-get update && apt-get install -y \
-    iputils-ping \
     apache2 \
     traceroute \
     bash \
     && apt-get clean \
     && rm -rf /var/lib/apt/list/* /tmp/* /var/tmp/* 
 
+ENV keyValue=google.com
+
 EXPOSE 80
+
+HEALTHCHECK --interval=3s --timeout=30s CMD curl --fail -m 2 http://localhost:80/ || exit 1
 
 COPY index.html /var/www/html/
 
