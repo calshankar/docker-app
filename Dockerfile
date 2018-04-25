@@ -1,7 +1,7 @@
 # Setting up Container Web app
 FROM phusion/baseimage
 MAINTAINER calshankar@icloud.com
-LABEL application=webApp
+LABEL application=apache-app
 
 RUN apt-get update && apt-get install -y \
     apache2 \
